@@ -815,6 +815,7 @@
   const DEFAULT_NAME = "kayadu lohar";
   const WEB3FORMS_ACCESS_KEY = "2aaa8990-bab1-471f-a27c-6f111c12d0f8";
   let currentName = DEFAULT_NAME;
+  let cardOpenedNotified = false;
 
   // fallback love notes in case the API is unreachable
   const FALLBACK_QUOTES = [
@@ -847,6 +848,12 @@
     document.getElementById('mainSite').classList.remove('hidden-content');
     spawnFloatingHearts();
     fetchNewQuote();
+
+    // email you the moment she enters the site (with whatever name she typed, or the default)
+    notifyEmail(
+      '💗 She opened your site!',
+      currentName + ' just entered the site and clicked Continue (name typed: "' + name + '") 💗'
+    );
   }
 
   // floating hearts in hero background
@@ -867,7 +874,14 @@
 
   // ---- love card tap vs button click ----
   function handleCardTap(e){
-    document.getElementById('loveCard').classList.toggle('flipped');
+    const card = document.getElementById('loveCard');
+    card.classList.toggle('flipped');
+
+    // email you the first time she opens/flips the card
+    if(card.classList.contains('flipped') && !cardOpenedNotified){
+      cardOpenedNotified = true;
+      notifyEmail('💌 She opened the love card!', currentName + ' just tapped and opened the love card on your site! 💌💗');
+    }
   }
 
   // ---- fetch a random love quote from a public API, with local fallback ----
