@@ -1,93 +1,992 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Placement Portal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💕</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#ffe3ec;
+    --rose:#ff6f91;
+    --deep-rose:#d94570;
+    --wine:#7a2743;
+    --cream:#fff8f3;
+    --gold:#e8b4b8;
+    --shadow-rose: rgba(217,69,112,0.35);
+  }
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
-        }
+  *{box-sizing:border-box;}
 
-        body{
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg,#667eea,#764ba2);
-        }
+  body{
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--blush) 60%, #ffd7e4 100%);
+    color: var(--wine);
+    overflow-x:hidden;
+    margin:0;
+  }
 
-        .container{
-            display:flex;
-            gap:30px;
-            flex-wrap:wrap;
-            justify-content:center;
-        }
+  h1,h2,h3,.script{
+    font-family:'Dancing Script', cursive;
+  }
 
-        .card{
-            width:300px;
-            padding:40px 20px;
-            background:white;
-            border-radius:20px;
-            text-align:center;
-            cursor:pointer;
-            transition:0.3s;
-            box-shadow:0 5px 20px rgba(0,0,0,0.2);
-        }
+  /* ---------------- GATE OVERLAY ---------------- */
+  #gateOverlay{
+    position:fixed; inset:0; z-index:9999;
+    background: radial-gradient(circle at 50% 30%, #ffeef3 0%, #ffd2e0 55%, #f8b6c9 100%);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+  }
+  .gate-card{
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(6px);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 60px var(--shadow-rose);
+    max-width: 420px;
+    width:90%;
+    border: 1px solid rgba(255,255,255,0.6);
+    animation: floatIn 0.8s ease;
+  }
+  @keyframes floatIn{
+    from{opacity:0; transform: translateY(30px) scale(0.95);}
+    to{opacity:1; transform: translateY(0) scale(1);}
+  }
+  .gate-heart{
+    font-size:3rem;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    display:inline-block;
+  }
+  @keyframes heartbeat{
+    0%,100%{transform:scale(1);}
+    25%{transform:scale(1.15);}
+    40%{transform:scale(0.98);}
+    60%{transform:scale(1.1);}
+  }
+  .gate-btn{
+    border:none;
+    border-radius: 50px;
+    padding: 0.7rem 2.2rem;
+    font-weight:600;
+    margin: 0.4rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  }
+  .btn-male{ background: #d9e6ff; color:#2a4d8f;}
+  .btn-female{ background: var(--rose); color:#fff;}
+  .gate-btn:hover{ transform: translateY(-3px) scale(1.04); }
 
-        .card:hover{
-            transform:translateY(-10px);
-        }
+  .gate-input{
+    border-radius: 50px;
+    border: 2px solid var(--gold);
+    padding: 0.6rem 1.2rem;
+    text-align:center;
+    width:100%;
+    outline:none;
+    font-family:'Poppins', sans-serif;
+  }
+  .gate-input:focus{ border-color: var(--rose); box-shadow: 0 0 0 3px var(--shadow-rose); }
 
-        .icon{
-            font-size:60px;
-            margin-bottom:20px;
-        }
+  .hidden-content{ display:none; }
 
-        h2{
-            margin-bottom:10px;
-            color:#333;
-        }
+  /* ---------------- NAV ---------------- */
+  .navbar-love{
+    background: rgba(255,255,255,0.65) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(217,69,112,0.15);
+  }
+  .navbar-brand.love-brand{
+    font-family:'Dancing Script', cursive;
+    font-size:1.8rem;
+    color: var(--deep-rose) !important;
+  }
+  .nav-link.love-link{
+    color: var(--wine) !important;
+    font-weight:500;
+    transition: color 0.2s;
+  }
+  .nav-link.love-link:hover{ color: var(--rose) !important; }
 
-        p{
-            color:#666;
-            margin-bottom:20px;
-        }
+  /* ---------------- HERO ---------------- */
+  .hero-section{
+    min-height: 92vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    padding-top: 70px;
+    overflow:hidden;
+  }
+  .floating-heart{
+    position:absolute;
+    color: rgba(255,111,145,0.35);
+    animation: floatUp linear infinite;
+    pointer-events:none;
+    z-index:0;
+  }
+  @keyframes floatUp{
+    from{ transform: translateY(110vh) rotate(0deg); opacity:0;}
+    10%{opacity:1;}
+    90%{opacity:1;}
+    to{ transform: translateY(-10vh) rotate(360deg); opacity:0;}
+  }
 
-        button{
-            padding:12px 25px;
-            border:none;
-            border-radius:8px;
-            background:#667eea;
-            color:white;
-            font-size:16px;
-            cursor:pointer;
-        }
-    </style>
+  .hero-title{
+    font-size: 3.2rem;
+    color: var(--deep-rose);
+    line-height:1.1;
+  }
+  .hero-sub{
+    color: var(--wine);
+    font-size:1.1rem;
+    opacity:0.85;
+  }
+
+  .couple-wrap{
+    position:relative;
+    height: 320px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 2.5rem;
+  }
+  .person{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    z-index:1;
+  }
+  .person-avatar{
+    font-size: 5.5rem;
+    filter: drop-shadow(0 10px 15px rgba(217,69,112,0.3));
+  }
+  .person-name{
+    font-family:'Dancing Script', cursive;
+    font-size:1.5rem;
+    color: var(--deep-rose);
+    margin-top: 0.3rem;
+    font-weight:700;
+  }
+  .person-male{
+    animation: driftRight 2.6s ease-in-out infinite alternate;
+  }
+  .person-female{
+    animation: driftLeft 2.6s ease-in-out infinite alternate;
+  }
+  @keyframes driftRight{
+    from{ transform: translateX(0);}
+    to{ transform: translateX(18px);}
+  }
+  @keyframes driftLeft{
+    from{ transform: translateX(0);}
+    to{ transform: translateX(-18px);}
+  }
+  .spark{
+    position:absolute;
+    font-size:2.2rem;
+    top: 30%;
+    animation: sparkPulse 1.4s ease-in-out infinite;
+    z-index:2;
+  }
+  @keyframes sparkPulse{
+    0%,100%{ opacity:0.3; transform: scale(0.8) rotate(0deg);}
+    50%{ opacity:1; transform: scale(1.3) rotate(20deg);}
+  }
+
+  /* ---------------- SECTIONS COMMON ---------------- */
+  .section-title{
+    text-align:center;
+    color: var(--deep-rose);
+    font-size:2.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .section-sub{
+    text-align:center;
+    max-width:600px;
+    margin: -1.5rem auto 2.5rem auto;
+    opacity:0.8;
+  }
+
+  /* ---------------- LOVE CARD ---------------- */
+  .love-card-wrap{
+    perspective: 1200px;
+  }
+  .love-card{
+    position:relative;
+    width:100%;
+    max-width:400px;
+    min-height: 480px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(.2,.9,.3,1);
+    cursor:pointer;
+  }
+  .love-card.flipped{ transform: rotateY(180deg); }
+  .card-face{
+    position:absolute; inset:0;
+    border-radius: 22px;
+    backface-visibility:hidden;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 2rem;
+    text-align:center;
+    box-shadow: 0 20px 45px var(--shadow-rose);
+  }
+  .card-front{
+    background: linear-gradient(145deg, var(--rose), var(--deep-rose));
+    color:#fff;
+  }
+  .card-front .icon{ font-size:4rem; animation: heartbeat 1.6s ease-in-out infinite; }
+  .card-back{
+    background: var(--cream);
+    color: var(--wine);
+    transform: rotateY(180deg);
+    border: 2px solid var(--gold);
+  }
+  .card-back p{ font-size:1.05rem; line-height:1.7; }
+  .quote-author{
+    font-size:0.9rem;
+    opacity:0.7;
+    margin-top:0.8rem;
+    font-style:italic;
+  }
+  .new-quote-btn{
+    margin-top:1.2rem;
+    border:none;
+    background: var(--rose);
+    color:#fff;
+    border-radius:50px;
+    padding:0.5rem 1.4rem;
+    font-size:0.9rem;
+    font-weight:600;
+  }
+  .new-quote-btn:hover{ background: var(--deep-rose); }
+  .quote-loading{ opacity:0.6; font-size:0.9rem; }
+
+  /* ---------------- OUR STORY ---------------- */
+  .timeline{
+    position:relative;
+    max-width:700px;
+    margin:0 auto;
+    padding-left: 2rem;
+    border-left: 3px dashed var(--gold);
+  }
+  .timeline-item{
+    position:relative;
+    margin-bottom: 2.5rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before{
+    content:"💗";
+    position:absolute;
+    left: -2.85rem;
+    top:0;
+    font-size:1.4rem;
+    background: var(--cream);
+    border-radius:50%;
+  }
+  .timeline-item h4{ color: var(--deep-rose); font-family:'Dancing Script', cursive; font-size:1.6rem; margin-bottom:0.3rem;}
+
+  /* ---------------- REASONS ---------------- */
+  .reason-card{
+    background:#fff;
+    border-radius:18px;
+    padding: 1.6rem;
+    text-align:center;
+    height:100%;
+    box-shadow: 0 10px 25px rgba(217,69,112,0.12);
+    transition: transform 0.25s ease;
+  }
+  .reason-card:hover{ transform: translateY(-8px); }
+  .reason-icon{ font-size:2.2rem; }
+
+  /* ---------------- FAVORITES (song / movie) ---------------- */
+  .fav-card{
+    background:#fff;
+    border-radius:20px;
+    padding: 2rem 1.6rem;
+    text-align:center;
+    height:100%;
+    box-shadow: 0 14px 32px rgba(217,69,112,0.15);
+    border: 1px solid rgba(232,180,184,0.5);
+    transition: transform 0.25s ease;
+  }
+  .fav-card:hover{ transform: translateY(-6px); }
+  .fav-icon{
+    font-size: 2.6rem;
+    display:inline-block;
+    animation: sparkPulse 2.2s ease-in-out infinite;
+  }
+  .fav-card h5{ color: var(--deep-rose); margin-top:0.6rem; font-weight:600; }
+  .fav-card .fav-title{
+    font-family:'Dancing Script', cursive;
+    font-size:1.6rem;
+    color: var(--wine);
+    margin: 0.3rem 0;
+  }
+  .fav-card .fav-meta{ opacity:0.75; font-size:0.9rem; }
+
+  /* ---------------- LOVE LANGUAGE ---------------- */
+  .lang-pill{
+    background:#fff;
+    border-radius:16px;
+    padding: 1rem 0.8rem;
+    text-align:center;
+    box-shadow: 0 8px 20px rgba(217,69,112,0.10);
+    height:100%;
+    opacity:0.7;
+    transform: scale(0.97);
+    transition: all 0.25s ease;
+  }
+  .lang-pill.best{
+    opacity:1;
+    transform: scale(1.05);
+    background: linear-gradient(145deg, #fff, var(--blush));
+    border: 2px solid var(--rose);
+    box-shadow: 0 16px 30px var(--shadow-rose);
+  }
+  .lang-pill .lang-icon{ font-size:1.8rem; }
+  .lang-pill .lang-name{ font-weight:500; font-size:0.9rem; margin-top:0.4rem; }
+  .lang-badge{
+    display:inline-block;
+    background: var(--rose);
+    color:#fff;
+    font-size:0.7rem;
+    font-weight:600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 50px;
+    margin-top:0.4rem;
+  }
+
+  /* ---------------- I LOVE YOU BABY ---------------- */
+  .love-question-section{
+    min-height:70vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+  }
+  .love-question-title{
+    font-size: 3rem;
+    color: var(--deep-rose);
+    margin-bottom: 2.5rem;
+  }
+  .btn-zone{
+    position:relative;
+    height:120px;
+    width:100%;
+    max-width:500px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 2rem;
+  }
+  #yesBtn, #noBtn{
+    border:none;
+    border-radius:50px;
+    padding: 0.9rem 2.4rem;
+    font-size:1.2rem;
+    font-weight:600;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #yesBtn{
+    background: linear-gradient(135deg, #ff8fab, var(--deep-rose));
+    color:#fff;
+  }
+  #yesBtn:hover{ transform: scale(1.08); box-shadow: 0 14px 30px var(--shadow-rose); }
+  #noBtn{
+    background:#fff;
+    color: var(--wine);
+    border: 2px solid var(--gold);
+    position:relative;
+    transition: left 0.25s ease, top 0.25s ease, transform 0.2s;
+  }
+
+  #blastOverlay{
+    position:fixed; inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index: 9998;
+    background: radial-gradient(circle, rgba(255,143,171,0.25), rgba(255,255,255,0.05));
+  }
+  .blast-text{
+    font-family:'Dancing Script', cursive;
+    font-size: 5rem;
+    color: var(--deep-rose);
+    text-shadow: 0 0 30px rgba(255,255,255,0.8);
+    animation: blastPop 0.6s cubic-bezier(.2,.9,.3,1);
+  }
+  @keyframes blastPop{
+    0%{ transform: scale(0.2) rotate(-10deg); opacity:0;}
+    60%{ transform: scale(1.2) rotate(3deg); opacity:1;}
+    100%{ transform: scale(1) rotate(0deg); opacity:1;}
+  }
+  .confetti-piece{
+    position:fixed;
+    top:-20px;
+    z-index:9997;
+    border-radius:2px;
+    pointer-events:none;
+  }
+
+  /* ---------------- MARRY ME ---------------- */
+  .marry-section{
+    min-height:60vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding: 2rem 1rem 4rem;
+  }
+  .marry-title{
+    font-size: 2.6rem;
+    color: var(--deep-rose);
+    margin-bottom: 1.8rem;
+  }
+  #marryBtn{
+    border:none;
+    border-radius:50px;
+    padding: 1rem 2.6rem;
+    font-size:1.2rem;
+    font-weight:600;
+    color:#fff;
+    background: linear-gradient(135deg, var(--deep-rose), var(--wine));
+    box-shadow: 0 12px 28px var(--shadow-rose);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  #marryBtn:hover{ transform: scale(1.06); box-shadow: 0 16px 34px var(--shadow-rose); }
+
+  #ringOverlay{
+    position:fixed; inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index: 9998;
+    background: radial-gradient(circle, rgba(255,215,180,0.3), rgba(255,255,255,0.08));
+    flex-direction: column;
+    text-align:center;
+  }
+  .ring-emoji{
+    font-size: 6.5rem;
+    animation: ringPop 0.8s cubic-bezier(.2,.9,.3,1), ringGlow 1.8s ease-in-out infinite 0.8s;
+    filter: drop-shadow(0 10px 25px rgba(217,69,112,0.5));
+  }
+  @keyframes ringPop{
+    0%{ transform: scale(0) rotate(-40deg); opacity:0;}
+    60%{ transform: scale(1.25) rotate(8deg); opacity:1;}
+    100%{ transform: scale(1) rotate(0deg); opacity:1;}
+  }
+  @keyframes ringGlow{
+    0%,100%{ transform: scale(1);}
+    50%{ transform: scale(1.08);}
+  }
+  .ring-text{
+    font-family:'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--deep-rose);
+    margin-top: 1rem;
+    text-shadow: 0 0 30px rgba(255,255,255,0.8);
+    animation: blastPop 0.7s cubic-bezier(.2,.9,.3,1) 0.3s both;
+  }
+  .ring-sub{
+    margin-top: 0.6rem;
+    color: var(--wine);
+    opacity:0.85;
+    font-size:1rem;
+    animation: blastPop 0.7s cubic-bezier(.2,.9,.3,1) 0.5s both;
+  }
+  .ring-close{
+    margin-top: 1.6rem;
+    border:none;
+    background:#fff;
+    color: var(--deep-rose);
+    border-radius:50px;
+    padding: 0.5rem 1.5rem;
+    font-weight:600;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+  .ring-confetti-piece{
+    position:fixed;
+    top:-30px;
+    z-index:9997;
+    font-size: 1.6rem;
+    pointer-events:none;
+  }
+
+  footer.love-footer{
+    text-align:center;
+    padding: 2rem;
+    color: var(--wine);
+    opacity:0.7;
+    font-size:0.9rem;
+  }
+
+  @media (max-width: 576px){
+    .hero-title{ font-size:2.2rem; }
+    .person-avatar{ font-size:3.8rem; }
+    .love-question-title{ font-size:2.2rem; }
+    .blast-text{ font-size:3rem; }
+    .couple-wrap{ gap:1.2rem; }
+    .ring-emoji{ font-size:4.5rem; }
+    .ring-text{ font-size:2.1rem; }
+    .marry-title{ font-size:2rem; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-
-        <div class="card" onclick="window.location.href='app.html'">
-            <div class="icon">🧠</div>
-            <h2>Aptitude Test</h2>
-            <p>Practice MCQ aptitude questions and improve your skills.</p>
-            <button>Start Aptitude</button>
-        </div>
-
-        <div class="card" onclick="window.location.href='int.html'">
-            <div class="icon">🎤</div>
-            <h2>AI Interview</h2>
-            <p>Attend AI-powered mock interviews and get feedback.</p>
-            <button>Start Interview</button>
-        </div>
-
+<!-- ================= GATE OVERLAY ================= -->
+<div id="gateOverlay">
+  <div class="gate-card" id="gateCard">
+    <div class="gate-heart">💗</div>
+    <h2 class="mt-2 mb-3">Who's opening this today?</h2>
+    <p class="mb-4" style="opacity:0.8;">This little corner of the internet was made for someone special.</p>
+    <div id="genderStep">
+      <button class="gate-btn btn-male" onclick="chooseGender('male')">👨 Male</button>
+      <button class="gate-btn btn-female" onclick="chooseGender('female')">👩 Female</button>
     </div>
+    <div id="nameStep" class="hidden-content">
+      <p class="mb-2" style="opacity:0.85;">What's your name, love?</p>
+      <input type="text" id="nameInput" class="gate-input mb-3" placeholder="Type your name...">
+      <br>
+      <button class="gate-btn btn-female" onclick="continueWithName()">Continue 💌</button>
+    </div>
+  </div>
+</div>
 
+<!-- ================= MAIN SITE ================= -->
+<div id="mainSite" class="hidden-content">
+
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-love fixed-top">
+    <div class="container">
+      <a class="navbar-brand love-brand" href="#top">Kabish 💕</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link love-link" href="#top">Home</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#story">Our Story</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#reasons">Reasons</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#favorites">Favorites</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#lovelanguage">Love Language</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#lovecard">Love Card</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#question">Ask Me</a></li>
+          <li class="nav-item"><a class="nav-link love-link" href="#marryme">Marry Me</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section" id="top">
+    <div class="container position-relative" style="z-index:2;">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="hero-title script">Kabish <span class="script">&amp;</span> <span id="heroName">Love</span><br>you make my heart skip 💓</h1>
+          <p class="hero-sub mt-3">Every beat, every moment, every little thing — it all somehow leads back to you.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="couple-wrap">
+            <div class="person person-male">
+              <div class="person-avatar">👨</div>
+              <div class="person-name">Kabish</div>
+            </div>
+            <div class="spark">✨</div>
+            <div class="person person-female">
+              <div class="person-avatar">👩</div>
+              <div class="person-name" id="heroNameTag">Love</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="py-5" id="story">
+    <div class="container">
+      <h2 class="section-title">Our Story 📖</h2>
+      <p class="section-sub">A few little moments that got us here.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>The Day We Met</h4>
+          <p>The moment everything felt a little brighter, a little softer.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>First Butterflies</h4>
+          <p>When one message from you could make my whole day.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Today</h4>
+          <p>Still choosing you, still smiling at my phone like an idiot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="py-5" id="reasons" style="background: rgba(255,255,255,0.4);">
+    <div class="container">
+      <h2 class="section-title">Reasons I Love You 🌸</h2>
+      <p class="section-sub">Just a few — there isn't enough space for all of them.</p>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">😊</div>
+            <h5 class="mt-2">Your Smile</h5>
+            <p class="mb-0">It fixes my whole day, every single time.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">🫂</div>
+            <h5 class="mt-2">You Care</h5>
+            <p class="mb-0">The way you check on me, even on your busy days.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">💬</div>
+            <h5 class="mt-2">Our Talks</h5>
+            <p class="mb-0">I could talk to you for hours and it'd feel like minutes.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">🎧</div>
+            <h5 class="mt-2">Little Things</h5>
+            <p class="mb-0">The songs, the memes, the random 2am thoughts you share.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">🌷</div>
+            <h5 class="mt-2">You're You</h5>
+            <p class="mb-0">Simple as that — no one compares.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="reason-card">
+            <div class="reason-icon">🔥</div>
+            <h5 class="mt-2">Always Here</h5>
+            <p class="mb-0">Whatever happens, I'm not going anywhere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAVORITES: SONG + MOVIE -->
+  <section class="py-5" id="favorites">
+    <div class="container">
+      <h2 class="section-title">My Favorites 🎬🎵</h2>
+      <p class="section-sub">The song and movie that feel like us.</p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-5">
+          <div class="fav-card">
+            <div class="fav-icon">🎵</div>
+            <h5>Favorite Love Song</h5>
+            <div class="fav-title">"Idhudhaan"</div>
+            <div class="fav-meta">from Sivappu Manjal Pachai</div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="fav-card">
+            <div class="fav-icon">🎬</div>
+            <h5>Favorite Movie</h5>
+            <div class="fav-title">Maaveeran</div>
+            <div class="fav-meta">our kind of story</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOVE LANGUAGE -->
+  <section class="py-5" id="lovelanguage" style="background: rgba(255,255,255,0.4);">
+    <div class="container">
+      <h2 class="section-title">Our Love Language 💞</h2>
+      <p class="section-sub">Out of all of them, one speaks the loudest for us.</p>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-2">
+          <div class="lang-pill best">
+            <div class="lang-icon">💬</div>
+            <div class="lang-name">Words of Affirmation</div>
+            <div class="lang-badge">Our Best</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="lang-pill">
+            <div class="lang-icon">⏳</div>
+            <div class="lang-name">Quality Time</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="lang-pill">
+            <div class="lang-icon">🤗</div>
+            <div class="lang-name">Physical Touch</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="lang-pill">
+            <div class="lang-icon">🎁</div>
+            <div class="lang-name">Receiving Gifts</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-2">
+          <div class="lang-pill">
+            <div class="lang-icon">🛠️</div>
+            <div class="lang-name">Acts of Service</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOVE CARD -->
+  <section class="py-5" id="lovecard">
+    <div class="container">
+      <h2 class="section-title">Flip My Heart 💌</h2>
+      <p class="section-sub">Tap the card for a random little love note.</p>
+      <div class="love-card-wrap">
+        <div class="love-card" id="loveCard" onclick="handleCardTap(event)">
+          <div class="card-face card-front">
+            <div class="icon">💝</div>
+            <h3 class="mt-3">A Little Card For You</h3>
+            <p class="mt-2" style="opacity:0.9;">(tap to open)</p>
+          </div>
+          <div class="card-face card-back">
+            <h3 class="script mb-2">Dear <span id="cardName">Love</span>,</h3>
+            <div id="quoteBox">
+              <p class="quote-loading">fetching something sweet...</p>
+            </div>
+            <button class="new-quote-btn" onclick="fetchNewQuote(event)">New Note 💫</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- I LOVE YOU BABY -->
+  <section class="love-question-section" id="question">
+    <div class="container">
+      <h2 class="love-question-title script">I love you, baby. Do you love me too? 🥺💗</h2>
+      <div class="btn-zone" id="btnZone">
+        <button id="yesBtn" onclick="sayYes()">Yes 💖</button>
+        <button id="noBtn" onmouseover="dodge()" ontouchstart="dodge()">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARRY ME -->
+  <section class="marry-section" id="marryme">
+    <div class="container">
+      <h2 class="marry-title script">One more little question... 👀</h2>
+      <button id="marryBtn" onclick="showRing()">💍 Marry Me?</button>
+    </div>
+  </section>
+
+  <footer class="love-footer">
+    made with 💗 by Kabish, just for you
+  </footer>
+</div>
+
+<!-- BLAST OVERLAY -->
+<div id="blastOverlay">
+  <div class="blast-text" id="blastText">Yesss!! 💥💕</div>
+</div>
+
+<!-- RING OVERLAY -->
+<div id="ringOverlay">
+  <div class="ring-emoji">💍</div>
+  <div class="ring-text">Forever & Always</div>
+  <div class="ring-sub">it's you, it's always been you 💗</div>
+  <button class="ring-close" onclick="closeRing()">close</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const DEFAULT_NAME = "kayadu lohar";
+  const WEB3FORMS_ACCESS_KEY = "2aaa8990-bab1-471f-a27c-6f111c12d0f8";
+  let currentName = DEFAULT_NAME;
+
+  // fallback love notes in case the API is unreachable
+  const FALLBACK_QUOTES = [
+    { text: "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.", author: "Lao Tzu" },
+    { text: "You are my today and all of my tomorrows.", author: "Leo Christopher" },
+    { text: "I love you not only for what you are, but for what I am when I am with you.", author: "Roy Croft" },
+    { text: "Whatever our souls are made of, his and mine are the same.", author: "Emily Brontë" },
+    { text: "I have found the one whom my soul loves.", author: "Song of Solomon" }
+  ];
+
+  function chooseGender(gender){
+    if(gender === 'male'){
+      alert("pls exite this site");
+      return;
+    }
+    document.getElementById('genderStep').classList.add('hidden-content');
+    document.getElementById('nameStep').classList.remove('hidden-content');
+    document.getElementById('nameInput').focus();
+  }
+
+  function continueWithName(){
+    let name = document.getElementById('nameInput').value.trim();
+    if(!name){ name = DEFAULT_NAME; }
+    currentName = name;
+    document.getElementById('heroName').textContent = name;
+    document.getElementById('heroNameTag').textContent = name;
+    document.getElementById('cardName').textContent = name;
+
+    document.getElementById('gateOverlay').style.display = 'none';
+    document.getElementById('mainSite').classList.remove('hidden-content');
+    spawnFloatingHearts();
+    fetchNewQuote();
+  }
+
+  // floating hearts in hero background
+  function spawnFloatingHearts(){
+    const hero = document.getElementById('top');
+    const heartsEmojis = ['💗','💖','💕','💓','🌸'];
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.className = 'floating-heart';
+      heart.textContent = heartsEmojis[Math.floor(Math.random()*heartsEmojis.length)];
+      heart.style.left = Math.random()*100 + '%';
+      heart.style.fontSize = (1 + Math.random()*1.8) + 'rem';
+      heart.style.animationDuration = (5 + Math.random()*6) + 's';
+      hero.appendChild(heart);
+      setTimeout(() => heart.remove(), 12000);
+    }, 700);
+  }
+
+  // ---- love card tap vs button click ----
+  function handleCardTap(e){
+    document.getElementById('loveCard').classList.toggle('flipped');
+  }
+
+  // ---- fetch a random love quote from a public API, with local fallback ----
+  async function fetchNewQuote(e){
+    if(e){ e.stopPropagation(); }
+    const box = document.getElementById('quoteBox');
+    box.innerHTML = '<p class="quote-loading">fetching something sweet...</p>';
+    try{
+      const res = await fetch('https://api.quotable.io/random?tags=love');
+      if(!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      if(!data || !data.content) throw new Error('empty');
+      box.innerHTML = `<p>"${data.content}"</p><div class="quote-author">— ${data.author}</div>`;
+    } catch(err){
+      const pick = FALLBACK_QUOTES[Math.floor(Math.random()*FALLBACK_QUOTES.length)];
+      box.innerHTML = `<p>"${pick.text}"</p><div class="quote-author">— ${pick.author}</div>`;
+    }
+  }
+
+  // No button dodge logic
+  function dodge(){
+    const zone = document.getElementById('btnZone');
+    const noBtn = document.getElementById('noBtn');
+    const zoneRect = zone.getBoundingClientRect();
+    const maxX = zoneRect.width - noBtn.offsetWidth - 10;
+    const maxY = zoneRect.height - noBtn.offsetHeight - 10;
+    const newX = Math.random() * maxX;
+    const newY = Math.random() * maxY;
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = newX + 'px';
+    noBtn.style.top = newY + 'px';
+  }
+
+  function sayYes(){
+    const messages = ["Yesss!! 💥💕", "I knew it!! 😍", "Yayyy love you!! 💖🎉", "Best answer ever!! 💘"];
+    document.getElementById('blastText').textContent = messages[Math.floor(Math.random()*messages.length)];
+    const overlay = document.getElementById('blastOverlay');
+    overlay.style.display = 'flex';
+    launchConfetti();
+    notifyYes(currentName);
+    setTimeout(() => { overlay.style.display = 'none'; }, 2200);
+  }
+
+  // silently emails you via Web3Forms when she clicks Yes — nothing shown on the page
+  async function notifyYes(name){
+    try{
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: 'She said YES 💕',
+          name: name,
+          message: name + ' just clicked YES on your site! 💗'
+        })
+      });
+    } catch(err){
+      // fail silently, no UI change either way
+    }
+  }
+
+  function launchConfetti(){
+    const colors = ['#ff6f91','#d94570','#ffd1dc','#e8b4b8','#fff','#ff8fab'];
+    for(let i=0; i<80; i++){
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.left = Math.random()*100 + 'vw';
+      piece.style.width = (6 + Math.random()*6) + 'px';
+      piece.style.height = (6 + Math.random()*10) + 'px';
+      piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+      piece.style.transform = `rotate(${Math.random()*360}deg)`;
+      document.body.appendChild(piece);
+
+      const duration = 2000 + Math.random()*1500;
+      const rotateEnd = Math.random()*720 - 360;
+      const drift = (Math.random()*200 - 100);
+
+      piece.animate([
+        { transform: `translate(0, 0) rotate(0deg)`, opacity:1 },
+        { transform: `translate(${drift}px, 100vh) rotate(${rotateEnd}deg)`, opacity:0.9 }
+      ], { duration: duration, easing:'ease-in' });
+
+      setTimeout(() => piece.remove(), duration + 100);
+    }
+  }
+
+  // ---- Marry Me: ring reveal ----
+  function showRing(){
+    const overlay = document.getElementById('ringOverlay');
+    overlay.style.display = 'flex';
+    launchRingConfetti();
+    notifyYes(currentName + " (marriage button)");
+  }
+
+  function closeRing(){
+    document.getElementById('ringOverlay').style.display = 'none';
+  }
+
+  function launchRingConfetti(){
+    const emojis = ['💍','✨','💗','💖'];
+    for(let i=0; i<50; i++){
+      const piece = document.createElement('div');
+      piece.className = 'ring-confetti-piece';
+      piece.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+      piece.style.left = Math.random()*100 + 'vw';
+      document.body.appendChild(piece);
+
+      const duration = 2200 + Math.random()*1600;
+      const rotateEnd = Math.random()*540 - 270;
+      const drift = (Math.random()*180 - 90);
+
+      piece.animate([
+        { transform: `translate(0,0) rotate(0deg)`, opacity:1 },
+        { transform: `translate(${drift}px, 100vh) rotate(${rotateEnd}deg)`, opacity:0.9 }
+      ], { duration: duration, easing:'ease-in' });
+
+      setTimeout(() => piece.remove(), duration + 100);
+    }
+  }
+</script>
 </body>
 </html>
