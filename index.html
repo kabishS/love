@@ -907,21 +907,22 @@
     const overlay = document.getElementById('blastOverlay');
     overlay.style.display = 'flex';
     launchConfetti();
-    notifyYes(currentName);
+    notifyEmail('She said YES 💕', currentName + ' just clicked YES on the "do you love me too" question! 💗');
     setTimeout(() => { overlay.style.display = 'none'; }, 2200);
   }
 
-  // silently emails you via Web3Forms when she clicks Yes — nothing shown on the page
-  async function notifyYes(name){
+  // silently emails you via Web3Forms — nothing shown on the page.
+  // subject/message differ depending on which button triggered it, so you can tell them apart.
+  async function notifyEmail(subject, message){
     try{
       await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           access_key: WEB3FORMS_ACCESS_KEY,
-          subject: 'She said YES 💕',
-          name: name,
-          message: name + ' just clicked YES on your site! 💗'
+          subject: subject,
+          name: currentName,
+          message: message
         })
       });
     } catch(err){
@@ -954,12 +955,15 @@
     }
   }
 
-  // ---- Marry Me: ring reveal ----
+  // ---- Marry Me: ring reveal + dedicated "she said yes to marriage" email ----
   function showRing(){
     const overlay = document.getElementById('ringOverlay');
     overlay.style.display = 'flex';
     launchRingConfetti();
-    notifyYes(currentName + " (marriage button)");
+    notifyEmail(
+      '💍 SHE SAID YES TO MARRY YOU!!',
+      currentName + ' just clicked the "Marry Me?" button on your site! 💍💗 Go call her right now!!'
+    );
   }
 
   function closeRing(){
