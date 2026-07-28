@@ -849,7 +849,7 @@
     spawnFloatingHearts();
     fetchNewQuote();
 
-    // email you the moment she enters the site (with whatever name she typed, or the default)
+    // 1) EMAIL: name entered + Continue clicked
     notifyEmail(
       '💗 She opened your site!',
       currentName + ' just entered the site and clicked Continue (name typed: "' + name + '") 💗'
@@ -877,7 +877,7 @@
     const card = document.getElementById('loveCard');
     card.classList.toggle('flipped');
 
-    // email you the first time she opens/flips the card
+    // 2) EMAIL: first time she opens/flips the card
     if(card.classList.contains('flipped') && !cardOpenedNotified){
       cardOpenedNotified = true;
       notifyEmail('💌 She opened the love card!', currentName + ' just tapped and opened the love card on your site! 💌💗');
@@ -921,6 +921,8 @@
     const overlay = document.getElementById('blastOverlay');
     overlay.style.display = 'flex';
     launchConfetti();
+
+    // 3) EMAIL: she clicked YES
     notifyEmail('She said YES 💕', currentName + ' just clicked YES on the "do you love me too" question! 💗');
     setTimeout(() => { overlay.style.display = 'none'; }, 2200);
   }
@@ -974,6 +976,8 @@
     const overlay = document.getElementById('ringOverlay');
     overlay.style.display = 'flex';
     launchRingConfetti();
+
+    // 4) EMAIL: she clicked Marry Me
     notifyEmail(
       '💍 SHE SAID YES TO MARRY YOU!!',
       currentName + ' just clicked the "Marry Me?" button on your site! 💍💗 Go call her right now!!'
